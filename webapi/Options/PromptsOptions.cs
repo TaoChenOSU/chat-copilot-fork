@@ -62,8 +62,8 @@ public class PromptsOptions
     // System
     [Required, NotEmptyOrWhitespace] public string KnowledgeCutoffDate { get; set; } = string.Empty;
     [Required, NotEmptyOrWhitespace] public string InitialBotMessage { get; set; } = string.Empty;
-    [Required, NotEmptyOrWhitespace] public string SystemDescription { get; set; } = string.Empty;
-    [Required, NotEmptyOrWhitespace] public string SystemResponse { get; set; } = string.Empty;
+    [Required(AllowEmptyStrings = true)] public string SystemDescription { get; set; } = string.Empty;
+    [Required(AllowEmptyStrings = true)] public string SystemResponse { get; set; } = string.Empty;
 
     internal string[] SystemAudiencePromptComponents => new string[]
     {
@@ -138,7 +138,8 @@ public class PromptsOptions
     };
 
     // Chat commands
-    internal string SystemChatContinuation = "SINGLE RESPONSE FROM BOT TO USER:\n[{{TimeSkill.Now}} {{timeSkill.Second}}] bot:";
+    // internal string SystemChatContinuation = "SINGLE RESPONSE FROM BOT TO USER:\n[{{TimeSkill.Now}} {{timeSkill.Second}}] bot:";
+    internal string SystemChatContinuation = "";
 
     // Regex to match system chat continuation preamble in rendered prompt
     internal const string SYSTEM_CHAT_CONTINUATION_REGEX = @"(SINGLE RESPONSE FROM BOT TO USER:\n\[.*] bot:)";
